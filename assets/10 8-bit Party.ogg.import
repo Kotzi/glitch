@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/10 8-bit Party.ogg-c3d9351635e6bd34135f2b3a760e678c.oggstr"
+
+[deps]
+
+source_file="res://assets/10 8-bit Party.ogg"
+dest_files=[ "res://.import/10 8-bit Party.ogg-c3d9351635e6bd34135f2b3a760e678c.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
