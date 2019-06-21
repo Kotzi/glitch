@@ -18,12 +18,6 @@ func _ready():
 	update_limits(Vector2(0,0), OS.get_window_size())
 
 func update_limits(min_pos, max_pos):
-	print("min")
-	print(min_pos)
-	print("max")
-	print(max_pos)
-	print("------")
-	
 	limit_left = min_pos.x + limit_dx
 	limit_right = max_pos.x - limit_dx
 	limit_top = min_pos.y + limit_dy
