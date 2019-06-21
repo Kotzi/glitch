@@ -6,6 +6,9 @@ var hole4Texture = preload("res://assets/Hole4.png")
 
 var is_active = false
 
+onready var position_dx = $Sprite.texture.get_width()
+onready var position_dy = $Sprite.texture.get_height()
+
 func _ready():
 	$AnimationPlayer.play("HoleAppeared")
 	$CreationAudioPlayer.play()
@@ -21,12 +24,10 @@ func activate():
 	$AnimationPlayer.stop()
 	$GlitchAudioPlayer.play()
 	
-	var newPosition = Vector2($Sprite.position.x + randf()*40, $Sprite.position.y + randf()*40) 
-	
 	var glitch = randi() % 4 + 1
 	for i in range(0, glitch):
 		var newHole = $Sprite.duplicate(DUPLICATE_SIGNALS)
-		newHole.position = newPosition
+		newHole.position = Vector2($Sprite.position.x + randf() * self.position_dx, $Sprite.position.y + randf() * self.position_dy)
 		match randi()%4:
 			0: 
 				newHole.position.x *= -1

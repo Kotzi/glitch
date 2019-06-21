@@ -50,5 +50,4 @@ max_distance = 65000.0
 [node name="GlitchAudioPlayer" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 4 )
 max_distance = 65000.0
-
 [connection signal="body_entered" from="Sprite/Area2D" to="." method="_on_Area2D_body_entered"]

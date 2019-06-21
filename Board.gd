@@ -26,26 +26,43 @@ func _ready():
 	var cameraTimer = Timer.new()
 
 	cameraTimer.one_shot = false
-	cameraTimer.wait_time = 2
+	cameraTimer.wait_time = 5.1
 	cameraTimer.autostart = true
 	add_child(cameraTimer)
 	cameraTimer.connect("timeout", self, "_on_CameraTimer_timeout")
 
 func _on_CameraTimer_timeout():
-	# SFX move camera
+	$CameraMovementSFXPlayer.play()
 	
 	match (randi() % 6):
-		0: $Camera2D.position.x += camera_dx
-		1: $Camera2D.position.x -= camera_dx
-		2: $Camera2D.position.y += camera_dy
-		3: $Camera2D.position.y += camera_dy
-		4: $Camera2D.position += Vector2(camera_dx, camera_dy)
-		5: $Camera2D.position -= Vector2(camera_dx, camera_dy)
-		
-	self.min_pos = -(get_canvas_transform().get_origin() / self.screen_scale)
-	self.max_pos = min_pos + self.screen_size
+		0: 
+			$Camera2D.position.x += camera_dx
+			self.min_pos.x += camera_dx
+			self.max_pos.x += camera_dx
+		1: 
+			$Camera2D.position.x -= camera_dx
+			self.min_pos.x -= camera_dx
+			self.max_pos.x -= camera_dx
+		2: 
+			$Camera2D.position.y += camera_dy
+			self.min_pos.y += camera_dy
+			self.max_pos.y += camera_dy
+		3: 
+			$Camera2D.position.y -= camera_dy
+			self.min_pos.y -= camera_dy
+			self.max_pos.y -= camera_dy
+		4: 
+			var movement = Vector2(camera_dx, camera_dy)
+			$Camera2D.position += movement
+			self.min_pos += movement
+			self.max_pos += movement
+		5: 
+			var movement = Vector2(camera_dx, camera_dy)
+			$Camera2D.position -= movement
+			self.min_pos -= movement
+			self.max_pos -= movement
 	
-	$KinematicBody2D.update_limits(min_pos, max_pos)
+	$KinematicBody2D.update_limits(self.min_pos, self.max_pos)
 
 func _on_HolesCreationTimer_timeout():
 	for i in range(0, randi() % 4 + 3):
@@ -66,8 +83,8 @@ func _on_HolesCreationTimer_timeout():
 	timer.connect("timeout", self, "_on_HolesActivationTimer_timeout")
 
 func _on_HolesActivationTimer_timeout():
-	#for hole in self.recently_added_holes:
-		#hole.activate()
+	for hole in self.recently_added_holes:
+		hole.activate()
 
 	self.recently_added_holes.clear()
 	
