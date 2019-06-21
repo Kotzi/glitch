@@ -16,4 +16,3 @@ script = ExtResource( 1 )
 stream = ExtResource( 4 )
 autoplay = true
 max_distance = 65000.0
-

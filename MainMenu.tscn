@@ -64,5 +64,4 @@ margin_top = 23.0
 margin_right = 313.0
 margin_bottom = 37.0
 text = "START"
-
 [connection signal="pressed" from="HBoxContainer/MarginContainer/StartContainer/StartButton" to="." method="_on_StartButton_pressed"]
