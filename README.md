@@ -1,4 +1,4 @@
-# glitch
+# Glitchy Space Escape
 
 ## A game for [Godot Wild Jam #10](https://itch.io/jam/godot-wild-jam-10)
 
