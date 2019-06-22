@@ -12,7 +12,7 @@ resource_name = "Sky"
 length = 8.0
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("Stars1:modulate")
+tracks/0/path = NodePath("Stars/Stars1:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -24,7 +24,7 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Stars2:modulate")
+tracks/1/path = NodePath("Stars/Stars2:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -36,7 +36,7 @@ tracks/1/keys = {
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Stars3:modulate")
+tracks/2/path = NodePath("Stars/Stars3:modulate")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -48,7 +48,7 @@ tracks/2/keys = {
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("Stars4:modulate")
+tracks/3/path = NodePath("Stars/Stars4:modulate")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -64,25 +64,28 @@ tracks/3/keys = {
 script = ExtResource( 1 )
 
 [node name="Sky" type="Sprite" parent="."]
-position = Vector2( 486.181, 301.573 )
 texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 1280, 750 )
 
-[node name="Stars1" type="Sprite" parent="."]
+[node name="Stars" type="Node2D" parent="."]
+
+[node name="Stars1" type="Sprite" parent="Stars"]
 modulate = Color( 1, 1, 1, 0.386212 )
 position = Vector2( 486.181, 301.573 )
 texture = ExtResource( 3 )
 
-[node name="Stars2" type="Sprite" parent="."]
+[node name="Stars2" type="Sprite" parent="Stars"]
 modulate = Color( 1, 1, 1, 0 )
 position = Vector2( 486.181, 301.573 )
 texture = ExtResource( 4 )
 
-[node name="Stars3" type="Sprite" parent="."]
+[node name="Stars3" type="Sprite" parent="Stars"]
 modulate = Color( 1, 1, 1, 0.841365 )
 position = Vector2( 486.181, 301.573 )
 texture = ExtResource( 5 )
 
-[node name="Stars4" type="Sprite" parent="."]
+[node name="Stars4" type="Sprite" parent="Stars"]
 modulate = Color( 1, 1, 1, 0 )
 position = Vector2( 486.181, 301.573 )
 texture = ExtResource( 6 )

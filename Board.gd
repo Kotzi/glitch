@@ -19,11 +19,11 @@ func _ready():
 	$Player.connect("player_died", self, "on_player_died")
 	
 	var timer = Timer.new()
-
-	timer.one_shot = false
-	timer.wait_time = 1.8
+	
+	timer.one_shot = true
+	timer.wait_time = 0.5
 	timer.autostart = true
-	timer.connect("timeout", self, "_on_HolesCreationTimer_timeout")
+	timer.connect("timeout", self, "_on_FirtGlitchTimer_timeout")
 	add_child(timer)
 	
 	var cameraTimer = Timer.new()
@@ -34,6 +34,9 @@ func _ready():
 	cameraTimer.connect("timeout", self, "_on_CameraTimer_timeout")
 	
 	add_child(cameraTimer)
+	
+func _process(delta):
+	$Background/Stars.position += $Player.velocity * 0.001
 
 func _on_CameraTimer_timeout():
 	if ($Player.is_dead):
@@ -43,6 +46,9 @@ func _on_CameraTimer_timeout():
 	
 	$Player.surprise()
 	
+	$Background/Sky.region_rect.size.x += camera_dx*2
+	$Background/Sky.region_rect.size.y += camera_dy*2
+		
 	match(camera_movement):
 		0:
 			match (randi() % 3):
@@ -106,6 +112,17 @@ func _on_CameraTimer_timeout():
 					self.max_pos.y += camera_dy
 				
 	$Player.update_limits(self.min_pos, self.max_pos)
+
+func _on_FirtGlitchTimer_timeout():
+	_on_HolesCreationTimer_timeout()
+	
+	var timer = Timer.new()
+
+	timer.one_shot = false
+	timer.wait_time = 1.8
+	timer.autostart = true
+	timer.connect("timeout", self, "_on_HolesCreationTimer_timeout")
+	add_child(timer)
 
 func _on_HolesCreationTimer_timeout():
 	if ($Player.is_dead):
