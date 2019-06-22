@@ -30,4 +30,7 @@ window/size/height=750
 
 [rendering]
 
+quality/driver/fallback_to_gles2=true
+quality/filters/use_nearest_mipmap_filter=true
+quality/filters/msaa=1
 environment/default_environment="res://default_env.tres"

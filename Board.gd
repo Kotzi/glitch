@@ -36,7 +36,7 @@ func _ready():
 	add_child(cameraTimer)
 	
 func _process(delta):
-	$Background/Stars.position += $Player.velocity * 0.001
+	$Background/Stars.position += $Player.velocity * 0.0005
 
 func _on_CameraTimer_timeout():
 	if ($Player.is_dead):
