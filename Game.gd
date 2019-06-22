@@ -24,7 +24,7 @@ func format_time(time):
 	return formatted
 
 func _ready():
-	$Node2D.connect("player_entered_hole", self, "on_player_entered_hole")
+	$Node2D.connect("player_died", self, "on_player_died")
 	
 	timer = Timer.new()
 
@@ -39,7 +39,7 @@ func _on_Timer_timeout():
 	
 	$Control.update_text(format_time(seconds))
 	
-func on_player_entered_hole():
+func on_player_died():
 	timer.stop()
 	
 	var parent = self.get_parent()

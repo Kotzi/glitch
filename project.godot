@@ -19,6 +19,11 @@ config/name="Glitch"
 run/main_scene="res://MainMenu.tscn"
 config/icon="res://icon.png"
 
+[display]
+
+window/size/width=1280
+window/size/height=750
+
 [rendering]
 
 environment/default_environment="res://default_env.tres"

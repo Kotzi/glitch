@@ -17,8 +17,8 @@ func _on_Area2D_body_entered(body):
 	if !is_active: 
 		return
 	
-	if body.has_method("on_entered_hole"):
-		body.on_entered_hole()
+	if body.has_method("on_entered_glitch"):
+		body.on_entered_glitch()
 
 func activate():
 	$AnimationPlayer.stop()

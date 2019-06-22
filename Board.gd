@@ -1,6 +1,6 @@
 extends Node2D
 
-signal player_entered_hole
+signal player_died
 
 onready var hole_scene = preload("res://Hole.tscn")
 onready var screen_scale = get_canvas_transform().get_scale()
@@ -15,26 +15,33 @@ var camera_movement = randi() % 4
 var recently_added_holes = []
 
 func _ready():
-	$KinematicBody2D.connect("player_entered_hole", self, "on_player_entered_hole")
+	$Player.connect("player_entered_glitch", self, "on_player_entered_glitch")
+	$Player.connect("player_died", self, "on_player_died")
 	
 	var timer = Timer.new()
 
 	timer.one_shot = false
 	timer.wait_time = 1.8
 	timer.autostart = true
-	add_child(timer)
 	timer.connect("timeout", self, "_on_HolesCreationTimer_timeout")
+	add_child(timer)
 	
 	var cameraTimer = Timer.new()
 
 	cameraTimer.one_shot = false
 	cameraTimer.wait_time = 3.8
 	cameraTimer.autostart = true
-	add_child(cameraTimer)
 	cameraTimer.connect("timeout", self, "_on_CameraTimer_timeout")
+	
+	add_child(cameraTimer)
 
 func _on_CameraTimer_timeout():
+	if ($Player.is_dead):
+		return
+	
 	$CameraMovementSFXPlayer.play()
+	
+	$Player.surprise()
 	
 	match(camera_movement):
 		0:
@@ -98,9 +105,12 @@ func _on_CameraTimer_timeout():
 					self.min_pos.y += camera_dy
 					self.max_pos.y += camera_dy
 				
-	$KinematicBody2D.update_limits(self.min_pos, self.max_pos)
+	$Player.update_limits(self.min_pos, self.max_pos)
 
 func _on_HolesCreationTimer_timeout():
+	if ($Player.is_dead):
+		return
+		
 	for i in range(0, randi() % 4 + 3):
 		var x = self.min_pos.x + randf() * screen_size.x
 		var y = self.min_pos.y + randf() * screen_size.y
@@ -115,14 +125,20 @@ func _on_HolesCreationTimer_timeout():
 	timer.one_shot = true
 	timer.wait_time = 1
 	timer.autostart = true
-	add_child(timer)
 	timer.connect("timeout", self, "_on_HolesActivationTimer_timeout")
+	self.add_child(timer)
 
 func _on_HolesActivationTimer_timeout():
+	if ($Player.is_dead):
+		return
+		
 	for hole in self.recently_added_holes:
 		hole.activate()
 
 	self.recently_added_holes.clear()
 	
-func on_player_entered_hole():
-	emit_signal("player_entered_hole")
+func on_player_entered_glitch():
+	$Camera2D/AnimationPlayer.play("Dead")
+	
+func on_player_died():
+	emit_signal("player_died")

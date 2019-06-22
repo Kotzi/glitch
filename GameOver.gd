@@ -1,8 +1,5 @@
 extends Control
 
-func _ready():
-	$AudioStreamPlayer2D.play()
-
 func configure(time):
 	$Panel/CenterContainer/VBoxContainer/Time.text = time
 
