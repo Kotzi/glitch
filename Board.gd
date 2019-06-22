@@ -46,9 +46,8 @@ func _on_CameraTimer_timeout():
 	
 	$Player.surprise()
 	
-	$Background/Sky.region_rect.size.x += camera_dx*2
-	$Background/Sky.region_rect.size.y += camera_dy*2
-		
+	$Background.adjust_rect(camera_dx*2, camera_dy*2)
+	
 	match(camera_movement):
 		0:
 			match (randi() % 3):

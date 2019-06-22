@@ -72,23 +72,27 @@ region_rect = Rect2( 0, 0, 1280, 750 )
 
 [node name="Stars1" type="Sprite" parent="Stars"]
 modulate = Color( 1, 1, 1, 0.386212 )
-position = Vector2( 486.181, 301.573 )
 texture = ExtResource( 3 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 1280, 750 )
 
 [node name="Stars2" type="Sprite" parent="Stars"]
 modulate = Color( 1, 1, 1, 0 )
-position = Vector2( 486.181, 301.573 )
 texture = ExtResource( 4 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 1280, 750 )
 
 [node name="Stars3" type="Sprite" parent="Stars"]
 modulate = Color( 1, 1, 1, 0.841365 )
-position = Vector2( 486.181, 301.573 )
 texture = ExtResource( 5 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 1280, 750 )
 
 [node name="Stars4" type="Sprite" parent="Stars"]
 modulate = Color( 1, 1, 1, 0 )
-position = Vector2( 486.181, 301.573 )
 texture = ExtResource( 6 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 1280, 750 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Sky = SubResource( 1 )
