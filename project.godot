@@ -27,6 +27,7 @@ Global="*res://Global.tscn"
 
 window/size/width=1280
 window/size/height=750
+window/size/resizable=false
 
 [rendering]
 
